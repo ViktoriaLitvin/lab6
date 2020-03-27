@@ -1,4 +1,4 @@
-package bsu.rfe.java.group6.lab6.Litvinenko.varC;
+package bsu.rfe.java.group6.lab6.Litvinenko.varC1;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -23,6 +23,29 @@ public class BouncingBall implements Runnable {
     private int speed;
     private double speedX;
     private double speedY;
+
+    public void setDirection(double newX, double newY, long time) {
+        double newSpeedX = (newX - x)/time;
+        double newSpeedY = (newY - y)/time;
+        if (Math.pow(MAX_SPEED,2) >= Math.pow(newSpeedX,2) + Math.pow(newSpeedY, 2)) {
+            speedX = newSpeedX;
+            speedY = newSpeedY;
+        }
+
+        System.out.println(speed);
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
 
     // Конструктор класса BouncingBall
     public BouncingBall(Field field) {

@@ -15,7 +15,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Z2cPhWxW2cZ7kna4qHVFNjYXM1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -36,8 +40,8 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="bsu.rfe.java.group6.lab6.Litvinenko.varC.MainFrame" />
+    <configuration name="MainFrame" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bsu.rfe.java.group6.lab6.Litvinenko.varC1.MainFrame" />
       <module name="lab6" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -57,11 +61,22 @@
       <workItem from="1584040612484" duration="4340000" />
       <workItem from="1585220369391" duration="113000" />
       <workItem from="1585221560736" duration="1002000" />
-      <workItem from="1585313690867" duration="680000" />
+      <workItem from="1585313690867" duration="3510000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

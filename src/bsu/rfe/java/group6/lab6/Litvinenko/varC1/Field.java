@@ -1,9 +1,8 @@
-package bsu.rfe.java.group6.lab6.Litvinenko.varC;
+package bsu.rfe.java.group6.lab6.Litvinenko.varC1;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class Field extends JPanel {
@@ -12,6 +11,10 @@ public class Field extends JPanel {
     //динамический список скачущих мячей
     private ArrayList<BouncingBall> balls = new ArrayList<BouncingBall>(10);
 
+    private long startPressedTime;
+
+    private int mouseX;
+    private int mouseY;
     // Класс таймер отвечает за регулярную генерацию событий ActionEvent
     // При создании его экземпляра используется анонимный класс,
     // реализующий интерфейс ActionListener
@@ -26,9 +29,31 @@ public class Field extends JPanel {
     //конструктор класса BouncingBall
     public Field() {
         // Установить цвет заднего фона белым
-        setBackground(Color.WHITE);
+        setBackground(Color.YELLOW);
         // Запустить таймер
         repaintTimer.start();
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                startPressedTime = System.nanoTime();
+                mouseX = e.getX();
+                mouseY = e.getY();
+                pause();
+
+             }
+
+            public void mouseReleased(MouseEvent e) {
+                resume();
+                for (BouncingBall ball : balls) {
+                    int ballX = (int) ball.getX();
+                    int ballY = (int) ball.getY();
+                    double distance = Math.pow(Math.pow((ballX - mouseX), 2) + Math.pow((ballY - mouseY), 2), 0.5);
+                    if (distance <= 1.5 * ball.getRadius()) {
+                        ball.setDirection(e.getX(), e.getY(), (int) ((System.nanoTime() - startPressedTime) / Math.pow(10, 7)));
+                    }
+                }
+            }
+        });
     }
 
     // Унаследованный от JPanel метод перерисовки компонента
@@ -51,6 +76,9 @@ public class Field extends JPanel {
         balls.add(new BouncingBall(this));
     }
 
+    public synchronized void reset() {
+        balls.clear();
+    }
     // Метод синхронизированный, т.е. только один поток может
     // одновременно быть внутри
     public synchronized void pause() {
