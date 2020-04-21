@@ -47,6 +47,7 @@ public class BouncingBall implements Runnable {
         return y;
     }
 
+
     // Конструктор класса BouncingBall
     public BouncingBall(Field field) {
         // Необходимо иметь ссылку на поле, по которому прыгает мяч,
@@ -74,8 +75,9 @@ public class BouncingBall implements Runnable {
             y = Math.random() * (field.getSize().getHeight() - 2 * radius) + radius;
             // Создаѐм новый экземпляр потока, передавая аргументом
             // ссылку на класс, реализующий Runnable (т.е. на себя)
-            Thread thisThread = new Thread(this);
+           // Thread thisThread = new Thread(this);
             // Запускаем поток
+        Thread thisThread = new Thread(this);
             thisThread.start();
     }
 
@@ -135,4 +137,7 @@ public class BouncingBall implements Runnable {
         canvas.draw(ball); canvas.fill(ball);
     }
 
+    public Color getColor() {
+        return color;
+    }
 }

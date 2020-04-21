@@ -43,6 +43,15 @@ public class MainFrame extends JFrame {
                 resetMenuItem.setEnabled(true);
             }
         };
+
+        Action add10BallAction = new AbstractAction("Добавить 10 мячей") {
+            public void actionPerformed(ActionEvent event) {
+                for(int i = 1; i <= 10; i++)
+                    field.addBall();
+            }
+        };
+        ballMenu.add(add10BallAction);
+
         Action resetAction = new AbstractAction("Сброс") {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -68,6 +77,7 @@ public class MainFrame extends JFrame {
         };
         pauseMenuItem = controlMenu.add(pauseAction);
         pauseMenuItem.setEnabled(false);
+
         Action resumeAction = new AbstractAction("Возобновить движение") {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

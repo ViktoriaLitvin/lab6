@@ -8,13 +8,19 @@ import java.util.ArrayList;
 public class Field extends JPanel {
     //флаг приостановленности движения
     private boolean paused;
+    //флаг приостановленности движения
+    private boolean stopRed;
+
     //динамический список скачущих мячей
     private ArrayList<BouncingBall> balls = new ArrayList<BouncingBall>(10);
+    public ArrayList<BouncingBall> getBalls() { return balls; }
+    public void setBalls(ArrayList<BouncingBall> balls) { this.balls = balls; }
 
     private long startPressedTime;
 
     private int mouseX;
     private int mouseY;
+
     // Класс таймер отвечает за регулярную генерацию событий ActionEvent
     // При создании его экземпляра используется анонимный класс,
     // реализующий интерфейс ActionListener
@@ -29,7 +35,7 @@ public class Field extends JPanel {
     //конструктор класса BouncingBall
     public Field() {
         // Установить цвет заднего фона белым
-        setBackground(Color.YELLOW);
+        setBackground(Color.WHITE);
         // Запустить таймер
         repaintTimer.start();
         this.addMouseListener(new MouseAdapter() {
@@ -91,6 +97,7 @@ public class Field extends JPanel {
     public synchronized void resume() {
         // Выключить режим паузы
         paused = false;
+        stopRed = false;
         // Будим все ожидающие продолжения потоки
         notifyAll();
     }
@@ -103,5 +110,14 @@ public class Field extends JPanel {
             // внутрь данного метода, засыпает
             wait();
         }
+        if(ball.getColor().getRed() >  ball.getColor().getBlue() +  ball.getColor().getGreen()){
+            wait();
+        }
+    }
+
+    //Пауза для красных, до задание
+    public synchronized void stopRed() {
+        stopRed = true;
+
     }
 }
